@@ -5,19 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PrompticaAI | Login</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="background-animation"></div>
+  <div class="background-animation">
+    <div class="floating-element"></div>
+    <div class="floating-element"></div>
+  </div>
   
   <div class="container login-container">
     <div class="logo-header">
       <div class="logo-icon">
-        <i class="fas fa-robot"></i>
+        <i class="fas fa-sparkles"></i>
       </div>
-      <h1>Promptica<span class="gradient-text">AI</span></h1>
-      <p class="tagline">Intelligent Prompt Gallery & Management</p>
+      <h1>Promptica<span style="color: #4361ee;">AI</span></h1>
+      <p class="tagline">Transform your creativity with intelligent AI prompt management</p>
     </div>
     
     <div class="card login-card">
@@ -29,14 +32,14 @@
           <div class="input-icon">
             <i class="fas fa-envelope"></i>
           </div>
-          <input type="email" id="email" placeholder="Email address" required>
+          <input type="email" id="email" placeholder="Enter your email" required>
         </div>
         
         <div class="input-group">
           <div class="input-icon">
             <i class="fas fa-lock"></i>
           </div>
-          <input type="password" id="password" placeholder="Password" required>
+          <input type="password" id="password" placeholder="Enter your password" required>
           <span class="toggle-password" onclick="togglePassword('password')">
             <i class="fas fa-eye"></i>
           </span>
@@ -59,31 +62,32 @@
           <span>Or continue with</span>
         </div>
         
-        <button type="button" class="btn btn-google" onclick="googleLogin()">
-          <i class="fab fa-google"></i> Google
+        <button type="button" class="btn btn-google btn-full" onclick="googleLogin()">
+          <i class="fab fa-google"></i> Continue with Google
         </button>
         
         <div class="auth-redirect">
-          Don't have an account? <a href="signup.html" class="link">Create one</a>
+          New to PrompticaAI? <a href="signup.html" class="link">Create an account</a>
         </div>
       </form>
     </div>
     
-    <div class="feature-grid">
-      <div class="feature">
-        <i class="fas fa-image"></i>
-        <h4>AI Gallery</h4>
-        <p>Browse thousands of AI-generated images</p>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">10K+</div>
+        <div class="stat-label">AI Prompts</div>
       </div>
-      <div class="feature">
-        <i class="fas fa-search"></i>
-        <h4>Smart Search</h4>
-        <p>Find prompts with intelligent filtering</p>
+      <div class="stat-card">
+        <div class="stat-number">5K+</div>
+        <div class="stat-label">Users</div>
       </div>
-      <div class="feature">
-        <i class="fas fa-cloud"></i>
-        <h4>Cloud Sync</h4>
-        <p>Access your collection anywhere</p>
+      <div class="stat-card">
+        <div class="stat-number">98%</div>
+        <div class="stat-label">Satisfaction</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">24/7</div>
+        <div class="stat-label">Support</div>
       </div>
     </div>
   </div>
