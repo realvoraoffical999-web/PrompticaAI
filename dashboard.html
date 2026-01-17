@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | PrompticaAI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <div class="brand-logo">P</div>
+      <span style="font-weight: 700; font-size: 20px;">PrompticaAI</span>
+    </div>
+    
+    <div class="nav-menu">
+      <a href="dashboard.html" class="nav-link active">Dashboard</a>
+      <a href="gallery.html" class="nav-link">Gallery</a>
+      <a href="collections.html" class="nav-link">Collections</a>
+      <a href="community.html" class="nav-link">Community</a>
+    </div>
+    
+    <div style="margin-left: auto; display: flex; align-items: center; gap: 16px;">
+      <button class="btn btn-primary" onclick="openModal('uploadModal')">
+        <i class="fas fa-plus"></i>
+        New Prompt
+      </button>
+      <div class="profile-header" style="margin: 0;">
+        <div class="avatar" id="userAvatar">U</div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Dashboard Content -->
+  <div class="container" style="margin-top: 80px;">
+    <!-- Welcome Section -->
+    <div class="profile-header">
+      <div class="avatar" id="dashboardAvatar">U</div>
+      <div class="profile-info">
+        <h2 id="userGreeting">Welcome back!</h2>
+        <p>Here's what's happening with your prompts today.</p>
+      </div>
+    </div>
+    
+    <!-- Stats Grid -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value" id="totalPrompts">0</div>
+        <div class="stat-label">Prompts Created</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="savedPrompts">0</div>
+        <div class="stat-label">Prompts Saved</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="collections">0</div>
+        <div class="stat-label">Collections</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="likesReceived">0</div>
+        <div class="stat-label">Likes Received</div>
+      </div>
+    </div>
+    
+    <!-- Quick Actions -->
+    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 32px; margin-top: 32px;">
+      <!-- Recent Prompts -->
+      <div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+          <h3 style="font-size: 20px;">Recent Prompts</h3>
+          <a href="gallery.html" class="btn btn-secondary">View All</a>
+        </div>
+        
+        <div id="promptsContainer" class="grid-2">
+          <!-- Prompts will be loaded here -->
+        </div>
+      </div>
+      
+      <!-- Quick Actions Sidebar -->
+      <div>
+        <h3 style="font-size: 20px; margin-bottom: 24px;">Quick Actions</h3>
+        
+        <div style="background: var(--surface); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--elevation-1);">
+          <button class="btn btn-primary" style="width: 100%; margin-bottom: 12px;" onclick="openModal('uploadModal')">
+            <i class="fas fa-upload"></i>
+            Upload Prompt
+          </button>
+          
+          <button class="btn btn-secondary" style="width: 100%; margin-bottom: 12px;" onclick="openModal('createCollectionModal')">
+            <i class="fas fa-folder-plus"></i>
+            New Collection
+          </button>
+          
+          <button class="btn btn-outline" style="width: 100%; margin-bottom: 12px;" onclick="window.location.href='explore.html'">
+            <i class="fas fa-compass"></i>
+            Explore Prompts
+          </button>
+          
+          <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(0,0,0,0.1);">
+            <h4 style="margin-bottom: 12px;">AI Models</h4>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <span class="chip active">All</span>
+              <span class="chip">Midjourney</span>
+              <span class="chip">DALL-E</span>
+              <span class="chip">SDXL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Upload Modal -->
+  <div id="uploadModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-size: 20px;">Upload New Prompt</h3>
+        <button class="modal-close">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <form id="uploadForm" onsubmit="event.preventDefault(); uploadPrompt();">
+        <div class="form-group">
+          <label class="form-label">Prompt Title</label>
+          <input type="text" class="form-input" id="promptTitle" placeholder="e.g., Cyberpunk Cityscape at Night" required>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Prompt Description</label>
+          <textarea class="form-input" id="promptDescription" rows="3" placeholder="Describe your prompt..."></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">AI Model</label>
+          <select class="form-input" id="aiModel" required>
+            <option value="">Select AI Model</option>
+            <option value="midjourney">Midjourney</option>
+            <option value="dalle">DALL-E 3</option>
+            <option value="sdxl">Stable Diffusion XL</option>
+            <option value="niji">Niji Journey</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Upload Image (Optional)</label>
+          <div class="upload-area" onclick="document.getElementById('imageUpload').click()">
+            <input type="file" id="imageUpload" accept="image/*" style="display: none;" onchange="handleFileUpload(event)">
+            <div class="upload-icon">
+              <i class="fas fa-cloud-upload-alt"></i>
+            </div>
+            <div class="upload-text">Drop your image here or click to upload</div>
+            <div class="upload-subtext">PNG, JPG, WebP up to 5MB</div>
+          </div>
+          <div id="imagePreview"></div>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Tags</label>
+          <input type="text" class="form-input" id="promptTags" placeholder="Add tags separated by commas (e.g., cyberpunk, city, neon)">
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Prompt Text</label>
+          <div class="prompt-editor">
+            <div class="editor-toolbar">
+              <button type="button" class="btn btn-secondary" style="padding: 4px 8px; font-size: 12px;">
+                <i class="fas fa-bold"></i>
+              </button>
+              <button type="button" class="btn btn-secondary" style="padding: 4px 8px; font-size: 12px;">
+                <i class="fas fa-italic"></i>
+              </button>
+              <button type="button" class="btn btn-secondary" style="padding: 4px 8px; font-size: 12px;">
+                <i class="fas fa-link"></i>
+              </button>
+            </div>
+            <div class="editor-content" contenteditable="true" id="promptContent" placeholder="Enter your AI prompt here..."></div>
+          </div>
+        </div>
+        
+        <div style="display: flex; gap: 12px; margin-top: 24px;">
+          <button type="submit" class="btn btn-primary" style="flex: 1;">
+            <i class="fas fa-save"></i>
+            Save Prompt
+          </button>
+          <button type="button" class="btn btn-outline" onclick="closeModal('uploadModal')">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Collections Modal -->
+  <div id="createCollectionModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-size: 20px;">Create New Collection</h3>
+        <button class="modal-close">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <form id="collectionForm">
+        <div class="form-group">
+          <label class="form-label">Collection Name</label>
+          <input type="text" class="form-input" id="collectionName" placeholder="e.g., Cyberpunk Prompts" required>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Description</label>
+          <textarea class="form-input" id="collectionDescription" rows="2" placeholder="Describe this collection..."></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Visibility</label>
+          <select class="form-input" id="collectionVisibility">
+            <option value="private">Private</option>
+            <option value="public">Public</option>
+            <option value="unlisted">Unlisted</option>
+          </select>
+        </div>
+        
+        <div style="display: flex; gap: 12px; margin-top: 24px;">
+          <button type="submit" class="btn btn-primary" style="flex: 1;">
+            Create Collection
+          </button>
+          <button type="button" class="btn btn-outline" onclick="closeModal('createCollectionModal')">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
