@@ -3,110 +3,233 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PrompticaAI | Sign Up</title>
+  <title>PrompticaAI - AI Prompt Management</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="background-animation">
-    <div class="floating-element"></div>
-    <div class="floating-element"></div>
-  </div>
-  
-  <div class="container">
-    <div class="logo-header">
-      <div class="logo-icon">
-        <i class="fas fa-rocket"></i>
-      </div>
-      <h1>Join Promptica<span style="color: #4361ee;">AI</span></h1>
-      <p class="tagline">Start your journey with the most advanced AI prompt management platform</p>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <div class="brand-logo">P</div>
+      <span style="font-weight: 700; font-size: 20px;">PrompticaAI</span>
     </div>
     
-    <div class="card">
-      <h2 class="card-title">Create Account</h2>
-      <p class="card-subtitle">Sign up to unlock all features</p>
-      
-      <form id="signupForm">
-        <div class="input-group">
-          <div class="input-icon">
-            <i class="fas fa-user"></i>
-          </div>
-          <input type="text" id="displayName" placeholder="Full name">
-        </div>
-        
-        <div class="input-group">
-          <div class="input-icon">
-            <i class="fas fa-envelope"></i>
-          </div>
-          <input type="email" id="email" placeholder="Email address" required>
-        </div>
-        
-        <div class="input-group">
-          <div class="input-icon">
-            <i class="fas fa-lock"></i>
-          </div>
-          <input type="password" id="password" placeholder="Create password" required>
-          <span class="toggle-password" onclick="togglePassword('password')">
-            <i class="fas fa-eye"></i>
-          </span>
-        </div>
-        
-        <div class="input-group">
-          <div class="input-icon">
-            <i class="fas fa-lock"></i>
-          </div>
-          <input type="password" id="confirmPassword" placeholder="Confirm password" required>
-        </div>
-        
-        <div class="form-options">
-          <label class="checkbox-container">
-            <input type="checkbox" id="terms" required>
-            <span class="checkmark"></span>
-            I agree to the <a href="#" class="link">Terms & Conditions</a>
-          </label>
-        </div>
-        
-        <button type="button" class="btn btn-primary btn-full" onclick="signup()">
-          <i class="fas fa-user-plus"></i> Create Account
-        </button>
-        
-        <div class="divider">
-          <span>Or sign up with</span>
-        </div>
-        
-        <button type="button" class="btn btn-google btn-full" onclick="googleLogin()">
-          <i class="fab fa-google"></i> Continue with Google
-        </button>
-        
-        <div class="auth-redirect">
-          Already have an account? <a href="index.html" class="link">Sign in here</a>
-        </div>
-      </form>
+    <div class="nav-menu">
+      <a href="index.html" class="nav-link active">Home</a>
+      <a href="#features" class="nav-link">Features</a>
+      <a href="#gallery" class="nav-link">Gallery</a>
+      <a href="#community" class="nav-link">Community</a>
     </div>
     
-    <div class="feature-grid">
-      <div class="feature">
-        <i class="fas fa-bolt"></i>
-        <h4>Lightning Fast</h4>
-        <p>Upload and search prompts in milliseconds</p>
-      </div>
-      <div class="feature">
-        <i class="fas fa-shield-alt"></i>
-        <h4>Secure & Private</h4>
-        <p>Enterprise-grade security for your creations</p>
-      </div>
-      <div class="feature">
-        <i class="fas fa-infinity"></i>
-        <h4>Unlimited Storage</h4>
-        <p>Store all your AI prompts without limits</p>
-      </div>
+    <div style="margin-left: auto;">
+      <a href="login.html" class="btn btn-outline">Sign In</a>
+      <a href="signup.html" class="btn btn-primary" style="margin-left: 8px;">Get Started</a>
     </div>
-  </div>
+  </nav>
 
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">Master AI Art with Smart Prompts</h1>
+      <p class="hero-subtitle">Discover, organize, and share the most effective AI art prompts. Join thousands of creators building amazing art.</p>
+      
+      <div class="search-container">
+        <div class="search-wrapper">
+          <input type="text" class="search-input" placeholder="Search 10,000+ AI prompts...">
+          <button class="search-button">
+            <i class="fas fa-search"></i>
+            Search
+          </button>
+        </div>
+      </div>
+      
+      <div class="filter-chips">
+        <div class="chip active">All</div>
+        <div class="chip">Midjourney</div>
+        <div class="chip">DALL-E</div>
+        <div class="chip">Stable Diffusion</div>
+        <div class="chip">Portraits</div>
+        <div class="chip">Landscape</div>
+        <div class="chip">Abstract</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trending Prompts -->
+  <section class="container">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
+      <h2 style="font-size: 32px; font-weight: 700;">🔥 Trending Prompts</h2>
+      <a href="#" class="btn btn-secondary">View All</a>
+    </div>
+    
+    <div class="grid-4">
+      <!-- Prompt Card 1 -->
+      <div class="card">
+        <div class="card-image">
+          <i class="fas fa-robot" style="font-size: 48px;"></i>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Cyberpunk Cityscape</h3>
+          <p class="card-description">Futuristic neon-lit city with flying cars and holograms, cinematic lighting</p>
+          <div style="display: flex; gap: 8px; margin-top: 16px;">
+            <span style="font-size: 12px; color: #666; background: #f0f0f0; padding: 4px 8px; border-radius: 4px;">Midjourney</span>
+            <span style="font-size: 12px; color: #666; background: #f0f0f0; padding: 4px 8px; border-radius: 4px;">V5.2</span>
+          </div>
+          <div style="margin-top: 16px;">
+            <button class="btn btn-primary" style="width: 100%;">View Details</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Prompt Card 2 -->
+      <div class="card">
+        <div class="card-image">
+          <i class="fas fa-palette" style="font-size: 48px;"></i>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Watercolor Forest</h3>
+          <p class="card-description">Soft watercolor painting of magical forest with glowing mushrooms</p>
+          <div style="display: flex; gap: 8px; margin-top: 16px;">
+            <span style="font-size: 12px; color: #666; background: #f0f0f0; padding: 4px 8px; border-radius: 4px;">Stable Diffusion</span>
+            <span style="font-size: 12px; color: #666; background: #f0f0f0; padding: 4px 8px; border-radius: 4px;">XL 1.0</span>
+          </div>
+          <div style="margin-top: 16px;">
+            <button class="btn btn-primary" style="width: 100%;">View Details</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Prompt Card 3 -->
+      <div class="card">
+        <div class="card-image">
+          <i class="fas fa-user-astronaut" style="font-size: 48px;"></i>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Astronaut in Ocean</h3>
+          <p class="card-description">Surreal scene of astronaut floating in deep ocean with bioluminescent creatures</p>
+          <div style="display: flex; gap: 8px; margin-top: 16px;">
+            <span style="font-size: 12px; color: #666; background: #f0f0f0; padding: 4px 8px; border-radius: 4px;">DALL-E 3</span>
+            <span style="font-size: 12px; color: #666; background: #f0f0f0; padding: 4px 8px; border-radius: 4px;">HD</span>
+          </div>
+          <div style="margin-top: 16px;">
+            <button class="btn btn-primary" style="width: 100%;">View Details</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Prompt Card 4 -->
+      <div class="card">
+        <div class="card-image">
+          <i class="fas fa-dragon" style="font-size: 48px;"></i>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Fantasy Dragon</h3>
+          <p class="card-description">Epic fantasy dragon with crystal scales, photorealistic, detailed anatomy</p>
+          <div style="display: flex; gap: 8px; margin-top: 16px;">
+            <span style="font-size: 12px; color: #666; background: #f0f0f0; padding: 4px 8px; border-radius: 4px;">Midjourney</span>
+            <span style="font-size: 12px; color: #666; background: #f0f0f0; padding: 4px 8px; border-radius: 4px;">Niji 5</span>
+          </div>
+          <div style="margin-top: 16px;">
+            <button class="btn btn-primary" style="width: 100%;">View Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="container" style="background: #f8f9ff; border-radius: 24px; padding: 48px; margin: 64px auto;">
+    <h2 style="text-align: center; font-size: 36px; margin-bottom: 48px;">✨ Why Choose PrompticaAI?</h2>
+    
+    <div class="grid-3">
+      <div style="text-align: center; padding: 24px;">
+        <div style="width: 64px; height: 64px; background: linear-gradient(135deg, #6750A4, #9C27B0); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; color: white; font-size: 24px;">
+          <i class="fas fa-brain"></i>
+        </div>
+        <h3 style="font-size: 20px; margin-bottom: 12px;">AI-Powered Search</h3>
+        <p style="color: #666;">Find perfect prompts with semantic search that understands context and style.</p>
+      </div>
+      
+      <div style="text-align: center; padding: 24px;">
+        <div style="width: 64px; height: 64px; background: linear-gradient(135deg, #6750A4, #9C27B0); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; color: white; font-size: 24px;">
+          <i class="fas fa-layer-group"></i>
+        </div>
+        <h3 style="font-size: 20px; margin-bottom: 12px;">Organize Collections</h3>
+        <p style="color: #666;">Create folders, tag prompts, and build your personal prompt library.</p>
+      </div>
+      
+      <div style="text-align: center; padding: 24px;">
+        <div style="width: 64px; height: 64px; background: linear-gradient(135deg, #6750A4, #9C27B0); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; color: white; font-size: 24px;">
+          <i class="fas fa-users"></i>
+        </div>
+        <h3 style="font-size: 20px; margin-bottom: 12px;">Community Driven</h3>
+        <p style="color: #666;">Share, remix, and collaborate with thousands of AI artists worldwide.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="container" style="text-align: center; padding: 64px 24px;">
+    <h2 style="font-size: 40px; margin-bottom: 16px;">Ready to Elevate Your AI Art?</h2>
+    <p style="font-size: 18px; color: #666; max-width: 600px; margin: 0 auto 32px;">Join thousands of creators already using PrompticaAI</p>
+    <div style="display: flex; gap: 16px; justify-content: center;">
+      <a href="signup.html" class="btn btn-primary" style="padding: 16px 32px; font-size: 16px;">
+        <i class="fas fa-rocket"></i>
+        Start Free Trial
+      </a>
+      <a href="#features" class="btn btn-outline" style="padding: 16px 32px; font-size: 16px;">
+        <i class="fas fa-play-circle"></i>
+        Watch Demo
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="background: #1A1A1A; color: white; padding: 64px 24px;">
+    <div class="container">
+      <div class="grid-4">
+        <div>
+          <div class="brand-logo" style="margin-bottom: 16px;">P</div>
+          <h3 style="font-size: 20px; margin-bottom: 16px;">PrompticaAI</h3>
+          <p style="color: #999;">The ultimate platform for AI prompt management and collaboration.</p>
+        </div>
+        
+        <div>
+          <h4 style="margin-bottom: 16px;">Platform</h4>
+          <ul style="list-style: none; color: #999;">
+            <li style="margin-bottom: 8px;">Gallery</li>
+            <li style="margin-bottom: 8px;">Collections</li>
+            <li style="margin-bottom: 8px;">Community</li>
+            <li style="margin-bottom: 8px;">Pricing</li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 style="margin-bottom: 16px;">Resources</h4>
+          <ul style="list-style: none; color: #999;">
+            <li style="margin-bottom: 8px;">Documentation</li>
+            <li style="margin-bottom: 8px;">Blog</li>
+            <li style="margin-bottom: 8px;">Tutorials</li>
+            <li style="margin-bottom: 8px;">API</li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 style="margin-bottom: 16px;">Connect</h4>
+          <div style="display: flex; gap: 16px; margin-bottom: 24px;">
+            <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-twitter"></i></a>
+            <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-discord"></i></a>
+            <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-github"></i></a>
+            <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-youtube"></i></a>
+          </div>
+          <p style="color: #999;">© 2024 PrompticaAI. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
   <script src="script.js"></script>
 </body>
 </html>
