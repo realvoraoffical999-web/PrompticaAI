@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PrompticaAI Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Login to PrompticaAI</h2>
+    <input type="email" id="email" placeholder="Email">
+    <div style="position:relative;">
+      <input type="password" id="password" placeholder="Password">
+      <span class="toggle-password" onclick="togglePassword('password')">👁️</span>
+    </div>
+    <label><input type="checkbox" id="remember"> Remember me</label>
+    <button onclick="login()">Login</button>
+    <button onclick="googleLogin()">Login with Google</button>
+    <p class="forgot"><a href="#" onclick="resetPassword()">Forgot Password?</a></p>
+    <p>Don't have an account? <a href="signup.html">Signup</a></p>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+  <script src="script.js"></script>
+</body>
+</html>
