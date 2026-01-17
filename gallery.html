@@ -2,21 +2,67 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>PrompticaAI Gallery</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PrompticaAI | Gallery</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="background-animation"></div>
+  
   <div class="container">
-    <h2>PrompticaAI Gallery</h2>
-    <button class="logout-btn" onclick="logout()">Logout</button>
-    <div class="gallery-search">
-      <input type="text" id="search" placeholder="Search prompts..." oninput="filterGallery()">
+    <!-- Header -->
+    <div class="gallery-header">
+      <div>
+        <h2>Prompt<span class="gradient-text">Gallery</span></h2>
+        <p class="tagline">Browse and manage your AI-generated images</p>
+      </div>
+      <div class="user-info" id="userInfo">
+        <div class="user-avatar">
+          <i class="fas fa-user"></i>
+        </div>
+        <div>
+          <div class="user-name">Loading...</div>
+          <div class="user-email"></div>
+        </div>
+      </div>
     </div>
-    <div class="gallery-container">
-      <div id="gallery" class="gallery"></div>
+    
+    <!-- Search Bar -->
+    <div class="search-container">
+      <i class="fas fa-search search-icon"></i>
+      <input type="text" 
+             id="search" 
+             class="search-input" 
+             placeholder="Search prompts, tags, or descriptions..." 
+             oninput="filterGallery()">
     </div>
+    
+    <!-- Gallery Grid -->
+    <div id="gallery" class="gallery-container">
+      <!-- Cards will be loaded here -->
+    </div>
+    
+    <!-- Loading Spinner -->
+    <div id="loading" class="loading-spinner" style="display: none;">
+      <div class="spinner"></div>
+    </div>
+    
+    <!-- Upload Button (Optional) -->
+    <div style="position: fixed; bottom: 2rem; right: 2rem;">
+      <button class="btn btn-primary" onclick="showUploadModal()">
+        <i class="fas fa-plus"></i> Upload Image
+      </button>
+    </div>
+    
+    <!-- Logout Button -->
+    <button class="btn btn-logout" onclick="logout()">
+      <i class="fas fa-sign-out-alt"></i> Logout
+    </button>
   </div>
 
+  <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
